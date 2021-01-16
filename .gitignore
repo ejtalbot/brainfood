@@ -1,0 +1,3 @@
+bfenv/*
+__pycache__/
+*.db
