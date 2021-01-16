@@ -1,0 +1,318 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger Rest Article
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: /api
+
+# Paths supported by the server application
+paths:
+  /grocery:
+    get:
+      operationId: grocery.get_all
+      tags:
+        - Grocery
+      summary: Get all groceries
+      description: Get all groceries
+      responses:
+        200:
+          description: Successfully get all groceries
+          schema:
+            type: array
+            items:
+              properties:
+                grocery_id:
+                  type: string
+                  description: Id of the grocery
+                name:
+                  type: string
+                  description: Name of the grocery
+                count:
+                  type: integer
+                  description: How many groceries bought
+                category_id:
+                  type: string
+                  description: Id of the category 
+                date_bought:
+                  type: string
+                  description: Date bought
+                date_finished:
+                  type: string
+                  description: Date out of stock
+
+    post:
+      operationId: grocery.create
+      tags:
+        - Grocery
+      summary: Create a grocery item
+      description: Create a new grocery item
+      parameters:
+        - name: grocery
+          in: body
+          description: grocery to create
+          required: True
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of grocery to create
+              count:
+                type: integer
+                description: count of grocery to create
+              category_id:
+                type: integer
+                description: id of category for grocery
+      responses:
+        201:
+          description: Successfully created grocery
+          schema:
+            properties:
+              grocery_id:
+                type: string
+                description: Id of the grocery
+              name:
+                type: string
+                description: Name of grocery to create
+              count:
+                type: integer
+                description: count of grocery to create
+              category_id:
+                type: integer
+                description: id of category for grocery
+              date_bought:
+                type: string
+                description: Date bought
+              date_finished:
+                type: string
+                description: Date out of stock
+
+  /grocery/{grocery_id}:
+    get:
+      operationId: grocery.read_one
+      tags:
+        - Grocery
+      summary: Get a grocery
+      description: Read one grocery
+      parameters:
+        - name: grocery_id
+          in: path
+          description: Id of the grocery to get
+          type: integer
+          required: True
+      responses:
+        200:
+          description: Successfully read grocery from  data operation
+          schema:
+            type: object
+            properties:
+              grocery_id:
+                type: string
+                description: Id of the grocery
+              name:
+                type: string
+                description: Name of grocery to create
+              count:
+                type: integer
+                description: count of grocery to create
+              category_id:
+                type: string
+                description: id of category for grocery
+              date_bought:
+                type: string
+                description: Date bought
+              date_finished:
+                type: string
+                description: Date out of stock
+
+    put:
+      operationId: grocery.update
+      tags:
+        - Grocery
+      summary: Update a grocery
+      description: Update a grocery
+      parameters:
+        - name: grocery_id
+          in: path
+          description: Id the grocery to update
+          type: integer
+          required: True
+        - name: grocery
+          in: body
+          schema:
+            type: object
+            properties:
+              count:
+                type: integer
+                description: count of grocery to create
+              category_id:
+                type: integer
+                description: id of category for grocery
+      responses:
+        200:
+          description: Successfully updated grocery
+          schema:
+            properties:
+              grocery_id:
+                type: string
+                description: Id of the grocery
+              name:
+                type: string
+                description: Name of grocery to create
+              count:
+                type: integer
+                description: count of grocery to create
+              category_id:
+                type: integer
+                description: id of category for grocery
+              date_bought:
+                type: string
+                description: Date bought
+              date_finished:
+                type: string
+                description: Date out of stock
+
+    delete:
+      operationId: grocery.delete
+      tags:
+        - Grocery
+      summary: Delete a grocery
+      description: Delete a grocery
+      parameters:
+        - name: grocery_id
+          in: path
+          type: integer
+          description: Id of the grocery to delete
+          required: true
+      responses:
+        200:
+          description: Successfully deleted a grocery
+
+  /category:
+    get:
+      operationId: category.get_all
+      tags:
+        - Category
+      summary: Get all groceries
+      description: Get all groceries
+      responses:
+        200:
+          description: Successfully get all groceries
+          schema:
+            type: array
+            items:
+              properties:
+                category_id:
+                  type: string
+                  description: Id of the category
+                name:
+                  type: string
+                  description: Name of the category
+
+    post:
+      operationId: category.create
+      tags:
+        - Category
+      summary: Create a category item
+      description: Create a new category item
+      parameters:
+        - name: category
+          in: body
+          description: category to create
+          required: True
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of category to create
+      responses:
+        201:
+          description: Successfully created category
+          schema:
+            properties:
+              category_id:
+                type: string
+                description: Id of the category
+              name:
+                type: string
+                description: Name of category to create
+
+  /category/{category_id}:
+    get:
+      operationId: category.read_one
+      tags:
+        - Category
+      summary: Get a category
+      description: Read one category
+      parameters:
+        - name: category_id
+          in: path
+          description: Id of the category to get
+          type: integer
+          required: True
+      responses:
+        200:
+          description: Successfully read category from  data operation
+          schema:
+            type: object
+            properties:
+              category_id:
+                type: string
+                description: Id of the category
+              name:
+                type: string
+                description: Name of category to create
+
+    put:
+      operationId: category.update
+      tags:
+        - Category
+      summary: Update a category
+      description: Update a category
+      parameters:
+        - name: category_id
+          in: path
+          description: Id the category to update
+          type: integer
+          required: True
+        - name: category
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: name of category to create
+      responses:
+        200:
+          description: Successfully updated category
+          schema:
+            properties:
+              category_id:
+                type: string
+                description: Id of the category
+              name:
+                type: string
+                description: Name of category
+
+    delete:
+      operationId: category.delete
+      tags:
+        - Category
+      summary: Delete a category
+      description: Delete a category
+      parameters:
+        - name: category_id
+          in: path
+          type: integer
+          description: Id of the category to delete
+          required: true
+      responses:
+        200:
+          description: Successfully deleted a category
