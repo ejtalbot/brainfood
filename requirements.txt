@@ -1,4 +1,8 @@
 connexion[swagger-ui]==2.7.0
 flask==1.1.2
+google-assistant-sdk[samples]
+google-auth-oauthlib[tool]
 requests==2.25.1
+setuptools==51.2.0
 SQLAlchemy==1.3.22
+wheel==0.36.2
