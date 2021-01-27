@@ -1,0 +1,64 @@
+{
+    "manifest": {
+        "displayName": "Brainfood",
+        "invocationName": "Brainfood",
+        "category": "PRODUCTIVITY"
+    },
+    "actions": [
+        {
+            "name": "grocery.actions.AddGroceryItem",
+            "availability": {
+                "deviceClasses": [
+                    {
+                        "assistantSdkDevice": {}
+                    }
+                ]
+            },
+            "intent": {
+                "name": "grocery.intents.AddGroceryItem",
+                "parameters": [
+                    {
+                        "name": "number",
+                        "type": "SchemaOrg_Number"
+                    },
+                    {
+                        "name": "grocery_item",
+                        "type": "GroceryItem"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "(I got)? $SchemaOrg_Number:number GroceryItem:grocery_item"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "Adding $number $grocery_item"
+                                }
+                            },
+                            {
+                                "deviceExecution": {
+                                    "command": "grocery.commands.AddGroceryItem",
+                                    "params": {
+                                        "grocery_item": "$grocery_item",
+                                        "number": "$number"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    ],
+    "types": [
+        {
+            "name": "$GroceryItem"
+        }
+    ]
+}
