@@ -22,6 +22,8 @@ app = connex_app.app
 def shutdown_session(exception=None):
     db_session.remove()
 
+app.config.from_pyfile('config.py')
+
 # Read the swagger.yml file to configure the endpoints
 connex_app.add_api("swagger.yml")
 
