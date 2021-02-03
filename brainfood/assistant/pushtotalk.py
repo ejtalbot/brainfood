@@ -225,8 +225,7 @@ def create_grpc_channel():
     # TODO: credentials file as env variable in app / fucntion
     try:
         with open(oauth_credentials_file, 'r') as f:
-            credentials = google.oauth2.credentials.Credentials(token=None,
-                                                                **json.load(f))
+            credentials = google.oauth2.credentials.Credentials(**json.load(f))
             http_request = google.auth.transport.requests.Request()
             credentials.refresh(http_request)
     except Exception as e:
